@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>面向对象浅克隆</title>
+    <!-- 什么是浅克隆？——只克隆对象的"表层"，如果对象的某些属性值又是引用类型值，则不进一步克隆，而是传递其引用 -->
+    <!-- 使用for...in...循环实现浅克隆 -->
 </head>
 <body>
     <script>
@@ -22,7 +24,7 @@
             obj2[k] = obj1[k];
         }
 
-        // 为什么叫浅克隆？比如c属性的值是引用类型值，那么本质上obj1和obj2的c属性是内存中的通过个数组，并没有被克隆分开
+        // 为什么叫浅克隆？比如c属性的值是引用类型值，那么本质上obj1和obj2的c属性是内存中的同一个数组，并没有被克隆分开
         obj1.c.push(77);
         console.log(obj2);                // obj2的c属性这个数组也会被增加77数组
         console.log(obj1.c == obj2.c);    // true，证明数组是通一个对象

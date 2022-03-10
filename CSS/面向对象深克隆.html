@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>面向对象深克隆</title>
+    <!-- 什么是深克隆？—— 不论对象的属性值是否又是引用类型值，都能将他们实现克隆 -->
+    <!-- 使用递归 -->
 </head>
 <body>
     <script>
@@ -20,13 +22,14 @@
 
         // 深克隆
         function deepClone(o){
-            // 要判断0是对象还是数组
+            // 要判断o是对象还是数组
             if (Array.isArray(o)){
                 // 数组
                 var result = [];
                 for (var i = 0;i < o.length; i++){
                     result.push(deepClone(o[i]));
                 }
+            // 因为数组typeof是object，所以需要先判断数组，再判断其他
             } else if (typeof o == 'object'){
                 // 对象
                 var result = {};
@@ -44,13 +47,13 @@
         var obj2 = deepClone(obj1);
         console.log(obj2);
         
-        console.log(obj1.c == obj2.c );
+        console.log(obj1.c == obj2.c );  //false
 
         obj1.c.push(99);
-        console.log(obj2);           // obj2不变的，因为没有‘藕断丝连’的现象
+        console.log(obj2);           // obj2不变，已经实现深克隆
 
-        obj1.c[2].p.push(99);
-
+        obj1.c[2].p.push(999);
+        console.log(obj2);            // obj2不变
     </script>
 </body>
 </html>
